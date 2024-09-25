@@ -1,3 +1,6 @@
+pip install gunicorn
+
+
 pip install -r requirements.txt
 
 # Convert static asset files
