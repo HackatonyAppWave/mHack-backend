@@ -1,5 +1,4 @@
-pip install gunicorn
-
+set -o errexit
 
 pip install -r requirements.txt
 
