@@ -6,13 +6,13 @@ from .decorators import calculate_cost
 from .memory import create_memory
 from .utils import get_urls_from_text, get_deed_and_article_pairs, get_majors
 import pathlib
+from django.conf import settings
 
 PATH = pathlib.Path(__file__).parent.resolve()
 
 
 class mAsystent:
     def __init__(self, memory):
-        load_dotenv()
         self.law_tool = LawTool()
         self.redirect_tool = RedirectTool()
         self.faq_tool = FAQTool()
@@ -24,9 +24,7 @@ class mAsystent:
             self.faq_tool,
             self.uni_advisor_tool,
         ]
-        turbo_llm = ChatOpenAI(
-            temperature=0,
-        )
+        turbo_llm = ChatOpenAI(temperature=0, api_key=settings.OPENAI_API_KEY)
 
         self.agent = initialize_agent(
             agent="chat-conversational-react-description",
